@@ -1,9 +1,13 @@
 import os
 import pandas as pd
+import librosa as lr
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main() -> None:
 
     df = GenerateDataFrame()
+    df.to_csv("Dataset.csv")
 
 def ParseEmotion(fileName: str) -> str:
 
@@ -51,15 +55,20 @@ def GenerateDataFrame() -> pd.DataFrame:
             wavFilePath = actorPath + "/" + wavFileName
             wavFilePaths.append(wavFilePath)
 
-    data = {'File Name': [], 'Emotion': []}
+    data = {'Name': [], 'Emotion': [], 'ZCR': []}
 
     for wavFilePath in wavFilePaths:
 
         fileName = wavFilePath[(wavFilePath.rindex("/") + 1):]
         emotion = ParseEmotion(fileName)
 
-        data['File Name'].append(fileName)
+        audioData, _ = lr.load(wavFilePath)
+
+        zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(audioData))
+
+        data['Name'].append(fileName)
         data['Emotion'].append(emotion)
+        data['ZCR'].append(zeroCrossingRate)
 
     return pd.DataFrame(data = data)
 
