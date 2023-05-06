@@ -1,27 +1,66 @@
 import os
 import pandas as pd
 
-DATASET_PATH = "Dataset"
+def main() -> None:
 
-WavFilePaths = []
+    df = GenerateDataFrame()
 
-ActorFolders = os.listdir(DATASET_PATH)
+def ParseEmotion(fileName: str) -> str:
 
-for FolderName in ActorFolders:
+    match fileName[6:8]:
 
-    ActorPath = DATASET_PATH + "/" + FolderName
-    WavFileNames = os.listdir(ActorPath)
+        case '01':
+            return 'NEUTRAL'
+        
+        case '02':
+            return 'CALM'
+        
+        case '03':
+            return 'HAPPY'
+        
+        case '04':
+            return 'SAD'
+        
+        case '05':
+            return 'ANGRY'
+        
+        case '06':
+            return 'FEARFUL'
+        
+        case '07':
+            return 'DISGUST'
+        
+        case '08':
+            return 'SURPRISED'
 
-    for WavFileName in WavFileNames:
+def GenerateDataFrame() -> pd.DataFrame:
 
-        WavFilePath = ActorPath + "/" + WavFileName
-        WavFilePaths.append(WavFilePath)
+    DATASET_PATH = "Dataset"
 
-Data = {'File Name': []}
+    wavFilePaths = []
 
-for WavFilePath in WavFilePaths:
+    actorFolders = os.listdir(DATASET_PATH)
 
-    FileName = WavFilePath[(WavFilePath.rindex("/") + 1):]
-    Data['File Name'].append(FileName)
+    for folderName in actorFolders:
 
-Frame = pd.DataFrame(data = Data)
+        actorPath = DATASET_PATH + "/" + folderName
+        wavFileNames = os.listdir(actorPath)
+
+        for wavFileName in wavFileNames:
+
+            wavFilePath = actorPath + "/" + wavFileName
+            wavFilePaths.append(wavFilePath)
+
+    data = {'File Name': [], 'Emotion': []}
+
+    for wavFilePath in wavFilePaths:
+
+        fileName = wavFilePath[(wavFilePath.rindex("/") + 1):]
+        emotion = ParseEmotion(fileName)
+
+        data['File Name'].append(fileName)
+        data['Emotion'].append(emotion)
+
+    return pd.DataFrame(data = data)
+
+main()
