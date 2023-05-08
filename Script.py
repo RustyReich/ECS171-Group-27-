@@ -55,7 +55,7 @@ def GenerateDataFrame() -> pd.DataFrame:
             wavFilePath = actorPath + "/" + wavFileName
             wavFilePaths.append(wavFilePath)
 
-    data = {'Name': [], 'Emotion': [], 'ZCR': [], 'RMS': [], 'MFCC': []}
+    data = {'Name': [], 'Emotion': [], 'ZCR': [], 'RMS': [], 'MFCC': [], 'Chroma': []}
 
     for wavFilePath in wavFilePaths:
 
@@ -67,12 +67,14 @@ def GenerateDataFrame() -> pd.DataFrame:
         zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(y = audioData))
         rootMeanSquared = np.mean(lr.feature.rms(y = audioData))
         mfcc = np.mean(lr.feature.mfcc(y = audioData, sr = samplingRate))
+        chroma = np.mean(lr.feature.chroma_stft(y = audioData, sr = samplingRate))
 
         data['Name'].append(fileName)
         data['Emotion'].append(emotion)
         data['ZCR'].append(zeroCrossingRate)
         data['RMS'].append(rootMeanSquared)
         data['MFCC'].append(mfcc)
+        data['Chroma'].append(chroma)
 
     return pd.DataFrame(data = data)
 
