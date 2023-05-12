@@ -55,7 +55,7 @@ def GenerateDataFrame() -> pd.DataFrame:
             wavFilePath = actorPath + "/" + wavFileName
             wavFilePaths.append(wavFilePath)
 
-    data = {'Name': [], 'Emotion': [], 'ZCR': [], 'RMS': [], 'MFCC': [], 'Chroma': []}
+    data = {'Name': [], 'Emotion': [], 'ZCR': [], 'RMS': [], 'MFCC': [], 'Chroma': [], 'MelSpectogram': []}
 
     for wavFilePath in wavFilePaths:
 
@@ -68,6 +68,7 @@ def GenerateDataFrame() -> pd.DataFrame:
         rootMeanSquared = np.mean(lr.feature.rms(y = audioData))
         mfcc = np.mean(lr.feature.mfcc(y = audioData, sr = samplingRate))
         chroma = np.mean(lr.feature.chroma_stft(y = audioData, sr = samplingRate))
+        melSpectogram = np.mean(lr.feature.melspectrogram(y = audioData, sr = samplingRate))
 
         data['Name'].append(fileName)
         data['Emotion'].append(emotion)
@@ -75,6 +76,7 @@ def GenerateDataFrame() -> pd.DataFrame:
         data['RMS'].append(rootMeanSquared)
         data['MFCC'].append(mfcc)
         data['Chroma'].append(chroma)
+        data['MelSpectogram'].append(melSpectogram)
 
     return pd.DataFrame(data = data)
 
