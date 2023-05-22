@@ -66,15 +66,13 @@ def GenerateDataFrame() -> pd.DataFrame:
 
         audioData, samplingRate = lr.load(wavFilePath)
 
-        zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(y = audioData).T, axis = 0)
-        rootMeanSquared = np.mean(lr.feature.rms(y = audioData).T, axis = 0)
         mfcc = np.mean(lr.feature.mfcc(y = audioData, sr = samplingRate).T, axis = 0)
-        chroma = np.mean(lr.feature.chroma_stft(y = audioData, sr = samplingRate).T, axis = 0)
-        melSpectogram = np.mean(lr.feature.melspectrogram(y = audioData, sr = samplingRate).T, axis = 0)
+        spectralContrast = np.mean(lr.feature.spectral_contrast(y = audioData, sr = samplingRate).T, axis = 0)
+        zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(y = audioData).T, axis = 0)
 
         names.append(fileName)
         emotions.append(emotion)
-        features.append(np.hstack((zeroCrossingRate, rootMeanSquared, mfcc, chroma, melSpectogram)))
+        features.append(np.hstack((mfcc, spectralContrast, zeroCrossingRate)))
 
     data = pd.DataFrame(features)
     data.insert(0, 'Emotion', emotions)
