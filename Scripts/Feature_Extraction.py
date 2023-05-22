@@ -3,11 +3,15 @@ import pandas as pd
 import librosa as lr
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+import sys
+
+os.chdir(os.path.dirname(sys.argv[0]))
 
 def main() -> None:
 
     df = GenerateDataFrame()
-    df.to_csv("Dataset.csv", index = False)
+    df.to_csv("../Dataset.csv", index = False)
 
 def ParseEmotion(fileName: str) -> str:
 
@@ -39,7 +43,7 @@ def ParseEmotion(fileName: str) -> str:
 
 def GenerateDataFrame() -> pd.DataFrame:
 
-    DATASET_PATH = "Dataset"
+    DATASET_PATH = "../Dataset"
 
     wavFilePaths = []
 

@@ -1,7 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+import sys
 
-data = pd.read_csv("Dataset.csv")
+os.chdir(os.path.dirname(sys.argv[0]))
+
+data = pd.read_csv("../Dataset.csv")
 
 uniqueEmotions = data['Emotion'].unique()
 numEachEmotion = {}
@@ -15,4 +19,4 @@ plt.xlabel("Emotions")
 plt.ylabel("Frequency")
 plt.bar(range(len(numEachEmotion)), list(numEachEmotion.values()), align = 'center', color = barColors)
 plt.xticks(range(len(numEachEmotion)), list(numEachEmotion.keys()))
-plt.savefig('Emotion_Distribution.png')
+plt.savefig('../Images/Emotion_Distribution.png')
