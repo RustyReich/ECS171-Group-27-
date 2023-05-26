@@ -39,6 +39,16 @@ def ParseEmotion(fileName: str) -> str:
         
         case '08':
             return 'SURPRISED'
+        
+def ExtractFeatures(filePath: str) -> np.ndarray:
+
+        audioData, samplingRate = lr.load(filePath)
+
+        mfcc = np.mean(lr.feature.mfcc(y = audioData, sr = samplingRate).T, axis = 0)
+        spectralContrast = np.mean(lr.feature.spectral_contrast(y = audioData, sr = samplingRate).T, axis = 0)
+        zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(y = audioData).T, axis = 0)
+
+        return np.hstack((mfcc, spectralContrast, zeroCrossingRate))
 
 def GenerateDataFrame() -> pd.DataFrame:
 
@@ -67,15 +77,9 @@ def GenerateDataFrame() -> pd.DataFrame:
         fileName = wavFilePath[(wavFilePath.rindex("/") + 1):]
         emotion = ParseEmotion(fileName)
 
-        audioData, samplingRate = lr.load(wavFilePath)
-
-        mfcc = np.mean(lr.feature.mfcc(y = audioData, sr = samplingRate).T, axis = 0)
-        spectralContrast = np.mean(lr.feature.spectral_contrast(y = audioData, sr = samplingRate).T, axis = 0)
-        zeroCrossingRate = np.mean(lr.feature.zero_crossing_rate(y = audioData).T, axis = 0)
-
         names.append(fileName)
         emotions.append(emotion)
-        features.append(np.hstack((mfcc, spectralContrast, zeroCrossingRate)))
+        features.append(ExtractFeatures(wavFilePath))
 
     data = pd.DataFrame(features)
     data.insert(0, 'Emotion', emotions)
