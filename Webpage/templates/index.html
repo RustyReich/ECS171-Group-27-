@@ -2,10 +2,31 @@
 
 <html>
 
-<body>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='style/style.css') }}">
 
-    <p>Test</p>
+    <head>
+        <title>ECS171 Group 27 Project Demo</title>
+    </head>
 
-</body>
+    <body style = "background-color: #181818;">
+
+        <div class = "top_bar">
+            <p class = "top_bar_text" id = "top_bar_text">Group 27: Emotional Speech Detection</p>
+        </div>
+
+        <button id = "record_button" class = "record_button">Record</button>
+
+        <div class = "progress" id = "progress">
+            <div class = "progress_bar" id = "progress_bar"></div>
+        </div>
+
+        <div class = "prediction" id = "prediction">
+            <p class = "prediction_text" id = "prediction_text">test</p>
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>
+
+    </body>
 
 </html>
