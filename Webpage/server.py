@@ -18,7 +18,12 @@ from flask import request
 from flask import render_template
 from joblib import load
 
-model = load("../Raw Models/ANN.joblib")
+ANN_PATH = "../Raw Models/ANN.joblib"
+KNN_PATH = "../Raw Models/KNN.joblib"
+SVC_LINEAR_PATH = "../Raw Models/SVC_LINEAR.joblib"
+SVC_RBF_PATH = "../Raw Models/SVC_RBF.joblib"
+
+model = load(ANN_PATH)
 
 app = Flask(__name__)
 
@@ -35,6 +40,9 @@ def form() -> None:
     data = request.files.get('file').read()
     fileName = request.files.get('file').filename
     
+    if os.path.exists("audio") == False:
+        os.makedirs("audio")
+
     f = open("audio/" + fileName, "wb")
     f.write(data)
 
