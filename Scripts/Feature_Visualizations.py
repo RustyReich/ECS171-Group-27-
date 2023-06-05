@@ -3,7 +3,10 @@ import sys
 import librosa as lr
 import matplotlib.pyplot as plt
 
-os.chdir(os.path.dirname(sys.argv[0]))
+try:
+    os.chdir(os.path.dirname(sys.argv[0]))
+except:
+    pass
 
 audioData, samplingRate = lr.load("../Dataset/Actor_01/03-01-01-01-01-01-01.wav")
 

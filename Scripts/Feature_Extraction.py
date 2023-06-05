@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
-os.chdir(os.path.dirname(sys.argv[0]))
+try:
+    os.chdir(os.path.dirname(sys.argv[0]))
+except:
+    pass
 
 def main() -> None:
 

@@ -1,6 +1,10 @@
 import os
 import sys
-os.chdir(os.path.dirname(sys.argv[0]))
+
+try:
+    os.chdir(os.path.dirname(sys.argv[0]))
+except:
+    pass
 
 sys.path.append("..")
 from Scripts import Feature_Extraction
