@@ -1,2 +1,4 @@
 #Ignore Virtual Environment folder
 /.venv
+
+.vscode
