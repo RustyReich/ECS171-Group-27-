@@ -12,5 +12,5 @@ Note: The demo may not work if you do not have [ffmpeg](https://ffmpeg.org/) ins
 9. Wait for the server to return the models prediction.
 
 # Running Code For the Models and Other Scripts
-After installing the packages, you can go into the directory 'Model Notebooks' and run the .ipynb files (ANN.ipynb, KNN.ipynb, SVM.ipynb) to generate the accuracy results.
-For the other scripts (Feature_Extraction.py, Feature_Visualizations.py, and Data_Analysis.py), you can go into the 'Scripts' directory and run them with 'python <script_name>.py'
+- After installing the packages, you can go into the directory 'Model Notebooks' and run the .ipynb files (ANN.ipynb, KNN.ipynb, SVM.ipynb) to generate the accuracy results.
+- For the other scripts (Feature_Extraction.py, Feature_Visualizations.py, and Data_Analysis.py), you can go into the 'Scripts' directory and run them with 'python <script_name>.py'
