@@ -1,11 +1,12 @@
 # How to run demo
+Note: The demo may not work if you do not have [ffmpeg](https://ffmpeg.org/) installed on your computer. This is because the audio processing library we use, [Librosa](https://librosa.org/) requires it. There is some info on the bottom of [this page](https://librosa.org/doc/0.8.1/install.html#ffmpeg) for installing ffmpeg on various operating systems.
 1. Create virtual python environment with `python -m venv environment`
 2. Activate the virtual environment with `source environment/bin/activate`
 3. Install required python packages with `pip install -r requirements.txt`
 4. Cd into Webpage directory with `cd Webpage`
 5. Run the server with `python server.py`
 6. Open a web browser and connect to `localhost:5000`
-    - Note: Some web browsers may not work correctly unless you have [ffmeg](https://ffmpeg.org/) installed on your machine. [Firefox](https://www.mozilla.org/en-US/firefox/new/) should work fine regardless.
+    - Note: Some web browsers may not work correctly on your machine. I recommend first trying [Firefox](https://www.mozilla.org/en-US/firefox/new/), and then trying [Google Chrome](https://www.google.com/chrome/) if it does not work. This is because different browsers record audio in different formats, for example Firefox records in .ogg format while Chrome records in .webm. Depending on the audio codecs you have installed on your computer, some of these may not work.
 7. Allow the web page to access your microphone
 8. Click the record button and speak for 3 seconds
 9. Wait for the server to return the models prediction.
