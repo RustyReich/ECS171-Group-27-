@@ -1,5 +1,5 @@
 # How to run demo
-Note: The demo may not work if you do not have [ffmpeg](https://ffmpeg.org/) installed on your computer. This is because the audio processing library we use, [Librosa](https://librosa.org/) requires it. There is some info on the bottom of [this page](https://librosa.org/doc/0.8.1/install.html#ffmpeg) for installing ffmpeg on various operating systems.
+Note: The demo may not work if you do not have [ffmpeg](https://ffmpeg.org/) installed on your computer. This is because the audio processing library we use, [Librosa](https://librosa.org/), requires it. There is some info on the bottom of [this page](https://librosa.org/doc/0.8.1/install.html#ffmpeg) for installing ffmpeg on various operating systems.
 1. Create virtual python environment with `python -m venv environment`
 2. Activate the virtual environment with `source environment/bin/activate`
 3. Install required python packages with `pip install -r requirements.txt`
