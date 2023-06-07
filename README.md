@@ -6,7 +6,7 @@ Note: The demo may not work if you do not have [ffmpeg](https://ffmpeg.org/) ins
 4. Cd into Webpage directory with `cd Webpage`
 5. Run the server with `python server.py`
 6. Open a web browser and connect to `localhost:5000`
-    - Note: Some web browsers may not work correctly on your machine. I recommend first trying [Firefox](https://www.mozilla.org/en-US/firefox/new/), and then trying [Google Chrome](https://www.google.com/chrome/) if it does not work. This is because different browsers record audio in different formats, for example Firefox records in .ogg format while Chrome records in .webm. Depending on the audio codecs you have installed on your computer, some of these may not work.
+    - Note: Some web browsers may not work correctly on your machine. I recommend first trying [Firefox](https://www.mozilla.org/en-US/firefox/new/), and then trying [Google Chrome](https://www.google.com/chrome/) if it does not work. This is because different browsers record audio in different formats, for example Firefox records in .ogg format while Chrome records in .webm. Depending on the audio codecs you have installed on your computer, some of these may not work. Our gradescope submission will also have a link to a YouTube video of the demo being run.
 7. Allow the web page to access your microphone
 8. Click the record button and speak for 3 seconds
 9. Wait for the server to return the models prediction.
